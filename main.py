@@ -32,7 +32,31 @@ elif cmd.find("epm uninstall") != -1:
     print("\nUninstalling " + package)
     os.system("rm -rf " + package)
     print("\n" + package + " uninstalled.\n")
-    os.system(sys.executable + " main.py")            
+    os.system(sys.executable + " main.py")         
+
+elif cmd.find("epm search") != -1:
+    package = cmd.split("epm search ")[1]
+    print("\nSearching for " + package)
+    r = requests.get("https://raw.githubusercontent.com/ThatError404/EPM/main/Packages/packages").text
+    # Split each line by letters and split packages by letters and see which package has the most matches of letters
+    packages = r.split("\n")
+    max = 0
+    for i in packages:
+        count = 0
+        for j in i:
+            if j == package[count]:
+                count += 1
+            else:
+                break
+        if count > max:
+            max = count
+            max_package = i
+    if max == 0:
+        print("\nNo packages found.")
+        os.system(sys.executable + " main.py")
+    else:
+        print("\Closest match. " + max_package + ".")
+        os.system(sys.executable + " main.py")
 
 elif cmd == "exit":
     sys.exit()
