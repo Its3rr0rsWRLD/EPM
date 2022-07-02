@@ -2,6 +2,7 @@ import requests
 import sys
 import os
 
+os.system("clear")
 cmd = input()
 if cmd.find("epm install") != -1:
     package = cmd.split("epm install ")[1]
@@ -17,7 +18,6 @@ if cmd.find("epm install") != -1:
             print("\n\nInstalling " + required[0])
             print("Collecting " + required[0])
             os.system("mkdir " + package)
-            os.system("touch " + package + "/" + required[0])
             with open(package + "/" + required[0], "w") as f:
                 f.write(requests.get("https://raw.githubusercontent.com/ThatError404/EPM/main/Packages/" + package + "/" + required[0]).text)
             size = os.path.getsize(package + "/" + required[0])
@@ -30,12 +30,19 @@ if cmd.find("epm install") != -1:
 elif cmd.find("epm uninstall") != -1:
     package = cmd.split("epm uninstall ")[1]
     print("\nUninstalling " + package)
-    os.system("rm -rf " + package)
+    # Delete the folder with the package name
+    os.system("rmdir /S /Q " + package)
     print("\n" + package + " uninstalled.\n")
-    os.system(sys.executable + " main.py")         
+    os.system(sys.executable + " main.py")     
 
 elif cmd.find("epm search") != -1:
     package = cmd.split("epm search ")[1]
+    if package == "epm":
+        answer = input("\nAre you sure you want to uninstall EPM? (y/n) ")
+        if answer == "y":
+            os.system("rmdir /S /Q EPM")
+        elif answer == "n":
+            os.system(sys.executable + " main.py")
     print("\nSearching for " + package)
     r = requests.get("https://raw.githubusercontent.com/ThatError404/EPM/main/Packages/packages").text
     # Split each line by letters and split packages by letters and see which package has the most matches of letters
