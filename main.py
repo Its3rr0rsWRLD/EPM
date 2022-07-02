@@ -2,7 +2,7 @@ import requests
 import sys
 import os
 
-os.system("clear")
+os.system("cls")
 cmd = input()
 if cmd.find("epm install") != -1:
     package = cmd.split("epm install ")[1]
