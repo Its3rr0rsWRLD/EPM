@@ -40,12 +40,6 @@ elif cmd.find("epm uninstall") != -1:
 
 elif cmd.find("epm search") != -1:
     package = cmd.split("epm search ")[1]
-    if package == "epm":
-        answer = input("\nAre you sure you want to uninstall EPM? (y/n) ")
-        if answer == "y":
-            os.system("rmdir /S /Q EPM")
-        elif answer == "n":
-            os.system(sys.executable + " main.py")
     print("\nSearching for " + package)
     r = requests.get("https://raw.githubusercontent.com/ThatError404/EPM/main/Packages/packages").text
     # Split each line by letters and split packages by letters and see which package has the most matches of letters
