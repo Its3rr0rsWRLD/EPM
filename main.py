@@ -29,11 +29,14 @@ if cmd.find("epm install") != -1:
 
 elif cmd.find("epm uninstall") != -1:
     package = cmd.split("epm uninstall ")[1]
-    print("\nUninstalling " + package)
-    # Delete the folder with the package name
-    os.system("rmdir /S /Q " + package)
-    print("\n" + package + " uninstalled.\n")
-    os.system(sys.executable + " main.py")     
+    if package == "epm":
+        print("\nUninstalling EPM...")
+        os.system("rmdir /S /Q C:\Program Files\EPM")
+    else:
+        print("\nUninstalling " + package)
+        os.system("rmdir /S /Q " + package)
+        print("\n" + package + " uninstalled.\n")
+        os.system(sys.executable + " main.py")     
 
 elif cmd.find("epm search") != -1:
     package = cmd.split("epm search ")[1]
