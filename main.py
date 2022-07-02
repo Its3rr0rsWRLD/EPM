@@ -29,9 +29,9 @@ if cmd.find("epm install") != -1:
 
 elif cmd.find("epm uninstall") != -1:
     package = cmd.split("epm uninstall ")[1]
-    if package == "epm":
-        print("\nUninstalling EPM...")
-        os.system("rmdir /S /Q C:\Program Files\EPM")
+    if not os.path.exists(package):
+        print("\nError: Package not found.")
+        os.system(sys.executable + " main.py")
     else:
         print("\nUninstalling " + package)
         os.system("rmdir /S /Q " + package)
