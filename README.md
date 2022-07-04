@@ -1,7 +1,7 @@
 # Errors Package Manager
 Ever had the idea to make a package manager from scratch? Didn't think so.
 
-
+# Python is required (Only for Dev Build 1)
 # How to use
 `Windows is required (Sorry, still working on a MacOS version)`
 
