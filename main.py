@@ -61,5 +61,16 @@ elif cmd.find("epm-npm ") != -1:
     print("\n(Running through Node Package Manager)\n")
     time.sleep(1)
     os.system("npm " + package)
+    
+elif cmd == "epm help":
+    print("\n------------------------------------------------------")
+    print("epm install <package> (Install Package)\n")
+    print("epm uninstall <package> (Uninstall Package)\n")
+    print("epm search <package> (Search for a Package)\n")
+    print("epm-npm <package> (Use Node Package Manager / NPM)\n")
+    print("epm help\n")
+    print("exit")
+    print("------------------------------------------------------\n")
+
 elif cmd == "exit":
     sys.exit()

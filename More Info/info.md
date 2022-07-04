@@ -1,1 +1,2 @@
-
+# Why does `installer.exe` need Admin permisions?
+`installer.exe` creates a folder at `C:/Program Files/` named `EPM`. Since `installer.exe` does not have anything to indicate that it is verified by Microsoft, your computer may be cautious about writing to that folder.
