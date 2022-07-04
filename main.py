@@ -8,7 +8,6 @@ if cmd.find("epm install") != -1:
     rd = requests.get("https://raw.githubusercontent.com/ThatError404/EPM/main/Packages/" + package + "/required")
     if rd.status_code == 404:
         print("\nError: Package not found.")
-        os.system("python main.py")
     elif rd.status_code == 200:
         print("\nPackage found. Installing...")
         required = rd.text.split("\n")
@@ -24,18 +23,15 @@ if cmd.find("epm install") != -1:
             print(" Packing " + required[0])
             print(" " + required[0] + " packed.")
             print(required[0] + " installed.\n")
-            os.system("python main.py")
 
 elif cmd.find("epm uninstall") != -1:
     package = cmd.split("epm uninstall ")[1]
     if not os.path.exists(package):
         print("\nError: Package not found.")
-        os.system("python main.py")
     else:
         print("\nUninstalling " + package)
         os.system("rmdir /S /Q " + package)
         print("\n" + package + " uninstalled.\n")
-        os.system("python main.py")     
 
 elif cmd.find("epm search") != -1:
     package = cmd.split("epm search ")[1]
@@ -56,10 +52,8 @@ elif cmd.find("epm search") != -1:
             max_package = i
     if max == 0:
         print("\nNo packages found.")
-        os.system("python main.py")
     else:
         print("\nClosest match. " + max_package + ".")
-        os.system("python main.py")
 
 elif cmd == "exit":
     sys.exit()
