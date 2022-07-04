@@ -1,4 +1,5 @@
 import requests
+import time
 import sys
 import os
 
@@ -55,5 +56,10 @@ elif cmd.find("epm search") != -1:
     else:
         print("\nClosest match. " + max_package + ".")
 
+elif cmd.find("epm-npm ") != -1:
+    package = cmd.split("epm-npm ")[1]
+    print("\n(Running through Node Package Manager)\n")
+    time.sleep(1)
+    os.system("npm " + package)
 elif cmd == "exit":
     sys.exit()
